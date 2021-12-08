@@ -1,0 +1,69 @@
+{
+  "manifest_version": 3,
+  "name": "Keyboard navigation",
+  "version": "1.0",
+  "author": "Faustino Hokama",
+
+  "action": {
+    "default_icon": {
+      "16": "assets/icon.png",
+      "48": "assets/icon.png",
+      "128": "assets/icon.png"
+    },
+    "default_title": "Click Me",
+    "default_popup": "popup.html"
+  },
+
+  "icons": {
+    "16": "assets/icon.png",
+    "48": "assets/icon.png",
+    "128": "assets/icon.png"
+  },
+
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+
+  "permissions": ["activeTab"],
+  "content_scripts": [
+    {
+      "matches": ["https://*.youtube.com/*"],
+      "js": ["pages/youtube.js"]
+    },
+    {
+      "matches": ["https://*.google.com/*"],
+      "js": ["pages/google.js"]
+    }
+  ],
+
+  "commands": {
+    "up": {
+      "suggested_key": {
+        "linux": "Ctrl+Up",
+        "mac": "Command+Shift+Up"
+      },
+      "description": "Select / Enter"
+    },
+    "left": {
+      "suggested_key": {
+        "linux": "Ctrl+Left",
+        "mac": "Command+Shift+Left"
+      },
+      "description": "Navigate Left"
+    },
+    "right": {
+      "suggested_key": {
+        "linux": "Ctrl+Right",
+        "mac": "Command+Shift+Right"
+      },
+      "description": "Navigate Right"
+    },
+    "down": {
+      "suggested_key": {
+        "linux": "Ctrl+Down",
+        "mac": "Command+Shift+Down"
+      },
+      "description": "Navigate Down"
+    }
+  }
+}
