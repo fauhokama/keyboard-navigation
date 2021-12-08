@@ -10,8 +10,6 @@ const youtubeNav = new KBNavigator({
   selectedAnimation,
 });
 
-youtubeNav.init();
-
 chrome.runtime.onMessage.addListener((request) => {
   youtubeNav.listener(request.command);
 });

@@ -8,19 +8,15 @@ enum Command {
 class KBNavigator {
   private readonly selector: string;
   private index = 0;
+  private elements: NodeListOf<HTMLElement>;
   private element: HTMLElement;
   private readonly selectedAnimation: Keyframe[];
 
   constructor({ selector, selectedAnimation }) {
     this.selectedAnimation = selectedAnimation;
     this.selector = selector;
-  }
-
-  init() {
-    const elements = document.querySelectorAll(
-      this.selector
-    ) as NodeListOf<HTMLElement>;
-    this.element = elements[this.index];
+    this.elements = document.querySelectorAll(this.selector);
+    this.element = this.elements[this.index];
     this.animate();
   }
 
@@ -39,10 +35,7 @@ class KBNavigator {
         break;
     }
 
-    const elements = document.querySelectorAll(
-      this.selector
-    ) as NodeListOf<HTMLElement>;
-    this.element = elements[this.index];
+    this.element = this.elements[this.index];
     this.animate();
   }
 
