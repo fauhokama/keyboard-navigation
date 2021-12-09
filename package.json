@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A Google Chrome extension to navigate websites only with your keyboard",
   "scripts": {
-    "gulp": "gulp",
+    "dev": "gulp",
     "build": "gulp build",
     "lint": "eslint . --ext .ts"
   },
