@@ -5,41 +5,54 @@ enum Command {
   Right = "right",
 }
 
-class KBNavigator {
-  private readonly selector: string;
+class Nav {
   private index = 0;
+  private selector: string;
   private elements: NodeListOf<HTMLElement>;
-  private element: HTMLElement;
-  private readonly selectedAnimation: Keyframe[];
+  element: HTMLElement;
 
-  constructor({ selector, selectedAnimation }) {
-    this.selectedAnimation = selectedAnimation;
+  constructor(selector: string) {
     this.selector = selector;
+    this.updateElements();
+  }
+
+  updateElements() {
     this.elements = document.querySelectorAll(this.selector);
     this.element = this.elements[this.index];
-    this.animate();
   }
 
   listener(request: Command) {
+    this.updateElements(); // Needed for lazyloading or resizing
     switch (request) {
       case Command.Left:
-        this.index--;
+        this.left();
         break;
       case Command.Right:
-        this.index++;
+        this.right();
         break;
       case Command.Up:
-        this.element.click();
+        this.up();
+        this.clickElement();
         break;
       default:
         break;
     }
 
     this.element = this.elements[this.index];
-    this.animate();
+    this.selectedElement();
   }
 
-  animate() {
-    this.element.animate(this.selectedAnimation, 300);
+  clickElement() {}
+
+  selectedElement() {}
+
+  up() {
+    this.element.click();
+  }
+  left() {
+    if (this.index > 0) this.index--;
+  }
+  right() {
+    this.index++;
   }
 }

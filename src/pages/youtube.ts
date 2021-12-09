@@ -1,15 +1,14 @@
-const selectedAnimation = [
-  { opacity: 1, easing: "ease-out" },
-  { opacity: 0.5, easing: "ease-in" },
-  { opacity: 1, easing: "ease-out" },
-];
+class Youtube extends Nav {
+  selectedElement() {
+    this.element.animate(
+      [{ transform: "scale(1.1)" }, { easing: "ease-out" }],
+      200
+    );
+  }
+}
 
-const youtubeNav = new KBNavigator({
-  // selector: "#contents > ytd-rich-item-renderer",
-  selector: "#thumbnail",
-  selectedAnimation,
-});
+const youtube = new Youtube("#thumbnail");
 
 chrome.runtime.onMessage.addListener((request) => {
-  youtubeNav.listener(request.command);
+  youtube.listener(request.command);
 });
