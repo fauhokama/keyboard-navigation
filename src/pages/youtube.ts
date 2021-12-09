@@ -1,3 +1,4 @@
+const selector = "#contents #thumbnail";
 class Youtube extends Nav {
   selectedElement() {
     this.element.animate(
@@ -7,8 +8,18 @@ class Youtube extends Nav {
   }
 }
 
-const youtube = new Youtube("#thumbnail");
+const youtube = new Youtube(selector);
 
-chrome.runtime.onMessage.addListener((request) => {
-  youtube.listener(request.command);
+chrome.runtime.onMessage.addListener(({ command, message, url }) => {
+  if (message === update) {
+    if (url.includes("watch")) {
+      youtube.resetSelector(`ytd-watch-flexy ${selector}`);
+    } else {
+      youtube.resetSelector(selector);
+    }
+  }
+
+  if (command) {
+    youtube.listener(command);
+  }
 });

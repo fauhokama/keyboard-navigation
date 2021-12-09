@@ -10,6 +10,10 @@ class Nav {
   }
 
   resetSelector(selector: string) {
+    this.index = 0;
+    this.selector = selector;
+  }
+
   updateElements() {
     this.elements = document.querySelectorAll(this.selector);
     this.element = this.elements[this.index];
