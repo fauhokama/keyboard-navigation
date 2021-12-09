@@ -28,11 +28,11 @@
   "content_scripts": [
     {
       "matches": ["https://*.youtube.com/*"],
-      "js": ["util/KBNavigator.js", "pages/youtube.js"]
+      "js": ["util/Nav.js", "pages/youtube.js", "util/constants.js"]
     },
     {
       "matches": ["https://*.google.com/*"],
-      "js": ["util/KBNavigator.js", "pages/google.js"]
+      "js": ["util/Nav.js", "pages/google.js", "util/constants.js"]
     }
   ],
 

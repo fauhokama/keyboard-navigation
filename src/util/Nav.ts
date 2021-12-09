@@ -1,10 +1,3 @@
-enum Command {
-  Up = "up",
-  Down = "down",
-  Left = "left",
-  Right = "right",
-}
-
 class Nav {
   private index = 0;
   private selector: string;
@@ -16,6 +9,7 @@ class Nav {
     this.updateElements();
   }
 
+  resetSelector(selector: string) {
   updateElements() {
     this.elements = document.querySelectorAll(this.selector);
     this.element = this.elements[this.index];
@@ -23,6 +17,7 @@ class Nav {
 
   listener(request: Command) {
     this.updateElements(); // Needed for lazyloading or resizing
+
     switch (request) {
       case Command.Left:
         this.left();
